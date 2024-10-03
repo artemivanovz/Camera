@@ -43,8 +43,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::readPendingDatagrams() {
-    ui->displayONButton->setChecked(true);
-    ui->cameraONButton->setChecked(true);
     while (socket->hasPendingDatagrams()) {
         QByteArray buffer;
         qint64 pendingSize = socket->pendingDatagramSize();
@@ -63,15 +61,10 @@ void MainWindow::readPendingDatagrams() {
             return;
         }
 
-        qDebug() << "Получено сообщение от:" << sender.toString() << ":" << senderPort;
-        qDebug() << "Размер данных:" << buffer.size();
-
         QDataStream stream(&buffer, QIODevice::ReadOnly);
         quint16 frameNumber, totalRows, rowNumber, rowSize;
         quint8 bytesPerPixel, reserved;
         stream >> frameNumber >> totalRows >> rowNumber >> rowSize >> bytesPerPixel >> reserved;
-
-        qDebug() << "Получен фрагмент строки:" << rowNumber << "из" << totalRows;
 
         tempFrameNumber = frameNumber;
 
@@ -84,14 +77,9 @@ void MainWindow::readPendingDatagrams() {
             return;
         }
 
-        qDebug() << "Размер строки:" << rowData.size() << "ожидаемый размер:" << rowSize;
-
         if (!imageFragments.contains(rowNumber)) {
             imageFragments.insert(rowNumber, rowData);
-            qDebug() << "Фрагмент строки:" << rowNumber << "успешно добавлен.";
         }
-
-        qDebug() << "Текущее количество фрагментов:" << imageFragments.size();
 
         // Проверяем, все ли строки получены
         if (imageFragments.size() == totalRows) {
@@ -113,7 +101,7 @@ void MainWindow::readPendingDatagrams() {
                          rowSize / bytesPerPixel,
                          totalRows,
                          rowSize, // stride (количество байт на строку)
-                         QImage::Format_RGB888);  // Формат изображения
+                         QImage::Format_Grayscale8);  // Формат изображения
 
             if (image.isNull()) {
                 qDebug() << "Ошибка: не удалось создать изображение из массива данных.";
