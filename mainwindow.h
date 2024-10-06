@@ -26,7 +26,6 @@ public:
 
 private slots:
 
-//    void on_pushButton_clicked(bool checked);
     void readPendingDatagrams();
 
     void on_displayButton_clicked(bool checked);

@@ -28,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->displayOFFButton->setChecked(true);
     ui->cameraOFFButton->setChecked(true);
 
+    ui->label->setScaledContents(false);
+
     socket = new QUdpSocket(this);
     bool bindResult = socket->bind(QHostAddress::LocalHost, 12346);
     if (!bindResult) {
@@ -100,7 +102,7 @@ void MainWindow::readPendingDatagrams() {
             QImage image(reinterpret_cast<const uchar*>(imageData.constData()),
                          rowSize / bytesPerPixel,
                          totalRows,
-                         rowSize, // stride (количество байт на строку)
+                         rowSize,
                          QImage::Format_Grayscale8);  // Формат изображения
 
             if (image.isNull()) {
@@ -209,4 +211,3 @@ void MainWindow::sendCommand(const QString &command){
     QByteArray data = command.toUtf8();
     socket->writeDatagram(data,QHostAddress(targetAddress),targetPort);
 }
-
