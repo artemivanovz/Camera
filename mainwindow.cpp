@@ -88,13 +88,14 @@ void MainWindow::readPendingDatagrams() {
             // Создаем массив байтов для хранения всех строк изображения
             QByteArray imageData;
 
+            QByteArray blackRow(rowSize, 0);
+
             // Собираем строки в единый массив
             for (int i = 0; i < totalRows; ++i) {
                 if (imageFragments.contains(i)) {
                     imageData.append(imageFragments[i]);
                 } else {
-                    qDebug() << "Ошибка: отсутствует строка " << i;
-                    return;
+                    imageData.append(blackRow);
                 }
             }
 
@@ -103,7 +104,7 @@ void MainWindow::readPendingDatagrams() {
                          rowSize / bytesPerPixel,
                          totalRows,
                          rowSize,
-                         QImage::Format_Grayscale8);  // Формат изображения
+                         QImage::Format_RGB32);
 
             if (image.isNull()) {
                 qDebug() << "Ошибка: не удалось создать изображение из массива данных.";
@@ -120,11 +121,8 @@ void MainWindow::readPendingDatagrams() {
                 qDebug() << "Ошибка: не удалось сохранить изображение в QByteArray.";
                 return;
             }
-
-            // Теперь передаем QByteArray в displayImage
             displayImage(byteArray);
 
-            // Очистка после сборки
             imageFragments.clear();
         }
     }
