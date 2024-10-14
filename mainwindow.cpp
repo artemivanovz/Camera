@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "imagereceiver.h"
 #include "./ui_mainwindow.h"
 #include <QCamera>
 #include <QCameraViewfinder>
@@ -11,6 +12,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , imageReceiver(new ImageReceiver(this))
     , targetAddress("127.0.0.1")
     , targetPort(12345)
     , tempFrameNumber(0)
@@ -30,102 +32,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->label->setScaledContents(false);
 
-    socket = new QUdpSocket(this);
-    bool bindResult = socket->bind(QHostAddress::LocalHost, 12346);
-    if (!bindResult) {
-        qDebug() << "Ошибка привязки к порту";
-    }
-    connect(socket, &QUdpSocket::readyRead, this, &MainWindow::readPendingDatagrams);
+    connect(imageReceiver, &ImageReceiver::imageReceived, this, &MainWindow::displayImage);
+
+    imageReceiver->bindSocket(QHostAddress::LocalHost, 12346);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     socket->close();
-}
-
-void MainWindow::readPendingDatagrams() {
-    while (socket->hasPendingDatagrams()) {
-        QByteArray buffer;
-        qint64 pendingSize = socket->pendingDatagramSize();
-        if (pendingSize <= 0) {
-            qDebug() << "Ошибка: некорректный размер ожидаемых данных:" << pendingSize;
-            return;
-        }
-        buffer.resize(pendingSize);
-
-        QHostAddress sender;
-        quint16 senderPort;
-
-        qint64 bytesRead = socket->readDatagram(buffer.data(), buffer.size(), &sender, &senderPort);
-        if (bytesRead == -1) {
-            qDebug() << "Ошибка при получении данных:" << socket->errorString();
-            return;
-        }
-
-        QDataStream stream(&buffer, QIODevice::ReadOnly);
-        quint16 frameNumber, totalRows, rowNumber, rowSize;
-        quint8 bytesPerPixel, reserved;
-        stream >> frameNumber >> totalRows >> rowNumber >> rowSize >> bytesPerPixel >> reserved;
-
-        tempFrameNumber = frameNumber;
-
-        QByteArray rowData;
-        rowData.resize(rowSize);
-        stream.readRawData(rowData.data(), rowSize);
-
-        if (rowSize % bytesPerPixel != 0) {
-            qDebug() << "Ошибка: некорректный размер строки данных.";
-            return;
-        }
-
-        if (!imageFragments.contains(rowNumber)) {
-            imageFragments.insert(rowNumber, rowData);
-        }
-
-        // Проверяем, все ли строки получены
-        if (imageFragments.size() == totalRows) {
-            // Создаем массив байтов для хранения всех строк изображения
-            QByteArray imageData;
-
-            QByteArray blackRow(rowSize, 0);
-
-            // Собираем строки в единый массив
-            for (int i = 0; i < totalRows; ++i) {
-                if (imageFragments.contains(i)) {
-                    imageData.append(imageFragments[i]);
-                } else {
-                    imageData.append(blackRow);
-                }
-            }
-
-            // Создаем QImage из собранного массива байтов
-            QImage image(reinterpret_cast<const uchar*>(imageData.constData()),
-                         rowSize / bytesPerPixel,
-                         totalRows,
-                         rowSize,
-                         QImage::Format_RGB32);
-
-            if (image.isNull()) {
-                qDebug() << "Ошибка: не удалось создать изображение из массива данных.";
-                return;
-            }
-
-            // Отображение изображения
-            QByteArray byteArray;
-            QBuffer buffer(&byteArray);
-            buffer.open(QIODevice::WriteOnly);
-
-            // Сохраняем изображение в формат JPEG в byteArray
-            if (!image.save(&buffer, "JPEG")) {
-                qDebug() << "Ошибка: не удалось сохранить изображение в QByteArray.";
-                return;
-            }
-            displayImage(byteArray);
-
-            imageFragments.clear();
-        }
-    }
 }
 
 void MainWindow::displayImage(const QByteArray &imageData) {
@@ -158,6 +73,7 @@ void MainWindow::on_displayButton_clicked(bool checked)
         ui->displayOFFButton->setChecked(true);
         ui->displayONButton->setChecked(false);
         ui->label->hide();
+        tempFrameNumber = 0;
     }
 
 }
@@ -178,34 +94,21 @@ void MainWindow::on_cameraButton_clicked(bool checked)
         ui->cameraOFFButton->setChecked(true);
         ui->cameraONButton->setChecked(false);
         ui->label->hide();
+        tempFrameNumber = 0;
     }
 }
 
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    struct Flags{
-        unsigned int IsCamOn : 1;
-        unsigned int IsDisOn : 1;
-    };
-    Flags flags;
-    if(ui->cameraOFFButton->isChecked()){
-        flags.IsCamOn = 0;
-    }
-    else{
-        flags.IsCamOn = 1;
-    }
-    if(ui->displayOFFButton->isChecked()){
-        flags.IsDisOn = 0;
-    }
-    else{
-        flags.IsDisOn = 1;
-    }
-    QString message = QString("Статус камеры : %1.\nСтатус отображения : %2.\nВсего кадров передано : %3.").arg(flags.IsCamOn).arg(flags.IsDisOn).arg(tempFrameNumber);
+    QString message = QString("Статус камеры : %1.\nСтатус отображения : %2.\nВсего кадров передано : %3.").arg(ui->cameraButton->isChecked() ? "Вкл" : "Выкл")
+                          .arg(ui->displayButton->isChecked() ? "Вкл" : "Выкл")
+                          .arg(imageReceiver->getFrameNumber());
     QMessageBox::information(this,"ИНФОРМАЦИЯ", message);
 }
 
 void MainWindow::sendCommand(const QString &command){
+    QUdpSocket *commandSocket = imageReceiver->getSocket();
     QByteArray data = command.toUtf8();
-    socket->writeDatagram(data,QHostAddress(targetAddress),targetPort);
+    commandSocket->writeDatagram(data,QHostAddress(targetAddress),targetPort);
 }

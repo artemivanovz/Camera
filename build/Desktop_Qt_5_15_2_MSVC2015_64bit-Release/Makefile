@@ -257,6 +257,7 @@ Makefile: ..\..\DisplayTest.pro ..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\
 		..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\qt_config.prf \
 		..\..\..\..\5.15.2\msvc2015_64\mkspecs\win32-msvc\qmake.conf \
 		..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\exclusive_builds.prf \
 		..\..\..\..\5.15.2\msvc2015_64\mkspecs\common\msvc-version.conf \
 		..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\toolchain.prf \
@@ -289,7 +290,6 @@ Makefile: ..\..\DisplayTest.pro ..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\
 		..\..\..\..\5.15.2\msvc2015_64\lib\Qt5Network.prl \
 		..\..\..\..\5.15.2\msvc2015_64\lib\Qt5Core.prl \
 		..\..\..\..\5.15.2\msvc2015_64\lib\qtmain.prl \
-		.qmake.stash \
 		..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\build_pass.prf \
 		..\..\..\..\5.15.2\msvc2015_64\lib\Qt5MultimediaWidgetsd.prl \
 		..\..\..\..\5.15.2\msvc2015_64\lib\Qt5Widgetsd.prl \
@@ -472,6 +472,7 @@ Makefile: ..\..\DisplayTest.pro ..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\
 ..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\qt_config.prf:
 ..\..\..\..\5.15.2\msvc2015_64\mkspecs\win32-msvc\qmake.conf:
 ..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\spec_post.prf:
+.qmake.stash:
 ..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\exclusive_builds.prf:
 ..\..\..\..\5.15.2\msvc2015_64\mkspecs\common\msvc-version.conf:
 ..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\toolchain.prf:
@@ -504,7 +505,6 @@ Makefile: ..\..\DisplayTest.pro ..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\
 ..\..\..\..\5.15.2\msvc2015_64\lib\Qt5Network.prl:
 ..\..\..\..\5.15.2\msvc2015_64\lib\Qt5Core.prl:
 ..\..\..\..\5.15.2\msvc2015_64\lib\qtmain.prl:
-.qmake.stash:
 ..\..\..\..\5.15.2\msvc2015_64\mkspecs\features\build_pass.prf:
 ..\..\..\..\5.15.2\msvc2015_64\lib\Qt5MultimediaWidgetsd.prl:
 ..\..\..\..\5.15.2\msvc2015_64\lib\Qt5Widgetsd.prl:
