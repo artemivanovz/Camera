@@ -9,12 +9,14 @@
 #include <QtGlobal>
 #include <QMessageBox>
 
+QString MainWindow::targetAddress = "";
+quint16 MainWindow::targetPort = 0;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , imageReceiver(new ImageReceiver(this))
-    , targetAddress("127.0.0.1")
-    , targetPort(12345)
+    , configManager(new ConfigManager(this))
     , tempFrameNumber(0)
 {
     ui->setupUi(this);
@@ -31,6 +33,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->cameraOFFButton->setChecked(true);
 
     ui->label->setScaledContents(false);
+
+    targetAddress = configManager->getTargetAddress();
+    targetPort = configManager->getTargetPort();
 
     connect(imageReceiver, &ImageReceiver::imageReceived, this, &MainWindow::displayImage);
 

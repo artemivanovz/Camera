@@ -59,6 +59,26 @@ QPushButton:hover {
     background-color: #f0e68c;
 }</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #D2B48C; /* Более коричневый оттенок бежевого */
+    border: 2px solid #A0522D; /* Более контрастная окантовка */
+    border-radius: 25px; /* Скругленные края */
+    font-family: 'Arial'; /* Широкий шрифт */
+    font-size: 16px; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    padding: 10px 20px; /* Внутренние отступы */
+    color: #8B4513; /* Более контрастный цвет шрифта */
+}
+
+QPushButton:hover {
+    background-color: #C19A6B; /* Цвет при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #8B4513; /* Цвет при нажатии */
+}</string>
+       </property>
        <property name="text">
         <string>ТРАНСЛЯЦИЯ ВКЛ</string>
        </property>
@@ -86,6 +106,26 @@ QPushButton:hover {
     background-color: #f0e68c;
 }</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #D2B48C; /* Более коричневый оттенок бежевого */
+    border: 2px solid #A0522D; /* Более контрастная окантовка */
+    border-radius: 25px; /* Скругленные края */
+    font-family: 'Arial'; /* Широкий шрифт */
+    font-size: 16px; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    padding: 10px 20px; /* Внутренние отступы */
+    color: #8B4513; /* Более контрастный цвет шрифта */
+}
+
+QPushButton:hover {
+    background-color: #C19A6B; /* Цвет при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #8B4513; /* Цвет при нажатии */
+}</string>
+       </property>
        <property name="text">
         <string>КАМЕРА ВКЛ</string>
        </property>
@@ -98,6 +138,26 @@ QPushButton:hover {
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #D2B48C; /* Более коричневый оттенок бежевого */
+    border: 2px solid #A0522D; /* Более контрастная окантовка */
+    border-radius: 25px; /* Скругленные края */
+    font-family: 'Arial'; /* Широкий шрифт */
+    font-size: 16px; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    padding: 10px 20px; /* Внутренние отступы */
+    color: #8B4513; /* Более контрастный цвет шрифта */
+}
+
+QPushButton:hover {
+    background-color: #C19A6B; /* Цвет при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #8B4513; /* Цвет при нажатии */
+}</string>
        </property>
        <property name="text">
         <string>СПРАВКА О СОСТОЯНИИ</string>

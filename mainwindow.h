@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "imagereceiver.h"
+#include "configmanager.h"
 #include <QMainWindow>
 #include <QCamera>
 #include <QCameraViewfinder>
@@ -27,7 +28,6 @@ public:
 
 private slots:
 
-    // void readPendingDatagrams();
     void on_displayButton_clicked(bool checked);
     void on_cameraButton_clicked(bool checked);
     void on_pushButton_3_clicked();
@@ -38,10 +38,12 @@ private:
     Ui::MainWindow *ui;
     QUdpSocket *udpSocket;
     QLabel *imageLabel;
-    ImageReceiver *imageReceiver;
-    QString targetAddress;
-    quint16 targetPort;
     QUdpSocket *socket;
+    ImageReceiver *imageReceiver;
+    ConfigManager *configManager;
+
+    static QString targetAddress;
+    static quint16 targetPort;
     QMap<int, QByteArray> imageFragments;
     int tempFrameNumber;
 
