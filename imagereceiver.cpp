@@ -67,7 +67,7 @@ void ImageReceiver::onReadyRead() {
                 }
             }
 
-            QImage image(reinterpret_cast<const uchar*>(imageData.constData()), rowSize / bytesPerPixel, totalRows, rowSize, QImage::Format_RGB32);
+            QImage image(reinterpret_cast<const uchar*>(imageData.constData()), rowSize / bytesPerPixel, totalRows, rowSize, QImage::Format_Grayscale8);
 
             QByteArray byteArray;
             QBuffer buffer(&byteArray);
