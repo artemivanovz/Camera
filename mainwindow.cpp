@@ -58,6 +58,7 @@ void MainWindow::displayImage(const QByteArray &imageData) {
         QSize labelSize = ui->label->size();
         QPixmap pixmap = QPixmap::fromImage(image).scaled(labelSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         ui->label->setPixmap(pixmap);
+        qDebug() << "Изображение успешно загружено и отображено.";
     } else {
         qDebug() << "Ошибка при загрузке изображения";
     }
