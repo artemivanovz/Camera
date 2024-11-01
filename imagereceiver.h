@@ -17,7 +17,7 @@ public:
     int getFrameNumber();
 
 signals:
-    void imageReceived(const QByteArray &imageData);
+    void imageReceived(const QImage &image);
 
 private slots:
     void onReadyRead();

@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ImageReceiver_t {
     QByteArrayData data[5];
-    char stringdata0[51];
+    char stringdata0[47];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,11 +35,11 @@ static const qt_meta_stringdata_ImageReceiver_t qt_meta_stringdata_ImageReceiver
 QT_MOC_LITERAL(0, 0, 13), // "ImageReceiver"
 QT_MOC_LITERAL(1, 14, 13), // "imageReceived"
 QT_MOC_LITERAL(2, 28, 0), // ""
-QT_MOC_LITERAL(3, 29, 9), // "imageData"
-QT_MOC_LITERAL(4, 39, 11) // "onReadyRead"
+QT_MOC_LITERAL(3, 29, 5), // "image"
+QT_MOC_LITERAL(4, 35, 11) // "onReadyRead"
 
     },
-    "ImageReceiver\0imageReceived\0\0imageData\0"
+    "ImageReceiver\0imageReceived\0\0image\0"
     "onReadyRead"
 };
 #undef QT_MOC_LITERAL
@@ -64,7 +64,7 @@ static const uint qt_meta_data_ImageReceiver[] = {
        4,    0,   27,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QByteArray,    3,
+    QMetaType::Void, QMetaType::QImage,    3,
 
  // slots: parameters
     QMetaType::Void,
@@ -78,14 +78,14 @@ void ImageReceiver::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         auto *_t = static_cast<ImageReceiver *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->imageReceived((*reinterpret_cast< const QByteArray(*)>(_a[1]))); break;
+        case 0: _t->imageReceived((*reinterpret_cast< const QImage(*)>(_a[1]))); break;
         case 1: _t->onReadyRead(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (ImageReceiver::*)(const QByteArray & );
+            using _t = void (ImageReceiver::*)(const QImage & );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ImageReceiver::imageReceived)) {
                 *result = 0;
                 return;
@@ -135,7 +135,7 @@ int ImageReceiver::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void ImageReceiver::imageReceived(const QByteArray & _t1)
+void ImageReceiver::imageReceived(const QImage & _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

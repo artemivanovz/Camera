@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[10];
-    char stringdata0[135];
+    char stringdata0[131];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,13 +41,13 @@ QT_MOC_LITERAL(5, 69, 23), // "on_pushButton_3_clicked"
 QT_MOC_LITERAL(6, 93, 11), // "sendCommand"
 QT_MOC_LITERAL(7, 105, 6), // "comand"
 QT_MOC_LITERAL(8, 112, 12), // "displayImage"
-QT_MOC_LITERAL(9, 125, 9) // "imageData"
+QT_MOC_LITERAL(9, 125, 5) // "image"
 
     },
     "MainWindow\0on_displayButton_clicked\0"
     "\0checked\0on_cameraButton_clicked\0"
     "on_pushButton_3_clicked\0sendCommand\0"
-    "comand\0displayImage\0imageData"
+    "comand\0displayImage\0image"
 };
 #undef QT_MOC_LITERAL
 
@@ -76,7 +76,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::Bool,    3,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    7,
-    QMetaType::Void, QMetaType::QByteArray,    9,
+    QMetaType::Void, QMetaType::QImage,    9,
 
        0        // eod
 };
@@ -91,7 +91,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->on_cameraButton_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 2: _t->on_pushButton_3_clicked(); break;
         case 3: _t->sendCommand((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 4: _t->displayImage((*reinterpret_cast< const QByteArray(*)>(_a[1]))); break;
+        case 4: _t->displayImage((*reinterpret_cast< const QImage(*)>(_a[1]))); break;
         default: ;
         }
     }

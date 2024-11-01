@@ -32,7 +32,7 @@ private slots:
     void on_cameraButton_clicked(bool checked);
     void on_pushButton_3_clicked();
     void sendCommand(const QString &comand);
-    void displayImage(const QByteArray &imageData);
+    void displayImage(const QImage &image);
 
 private:
     Ui::MainWindow *ui;
