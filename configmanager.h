@@ -12,7 +12,6 @@ class ConfigManager : public QObject
 public:
     explicit ConfigManager(QObject *parent = nullptr);
 
-    // Методы для получения настроек
     QString getTargetAddress() const;
     quint16 getTargetPort() const;
 
@@ -22,7 +21,7 @@ private:
     QString targetAddress;
     quint16 targetPort;
 
-    void loadConfig();  // Метод для загрузки конфигурации из файла
+    void loadConfig();
 };
 
 #endif // CONFIGMANAGER_H

@@ -69,16 +69,6 @@ void ImageReceiver::onReadyRead() {
 
             QImage image(reinterpret_cast<const uchar*>(imageData.constData()), rowSize / bytesPerPixel, totalRows, rowSize, QImage::Format_Grayscale8);
 
-            // QByteArray byteArray;
-            // QBuffer buffer(&byteArray);
-            // buffer.open(QIODevice::WriteOnly);
-
-            // if (!image.save(&buffer, "JPEG")) {
-            //     qDebug() << "Ошибка: не удалось сохранить изображение в QByteArray.";
-            //     return;
-            // }
-
-
             if (!image.isNull()) {
                 emit imageReceived(image);
             }

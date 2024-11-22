@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QtGlobal>
 #include <QMessageBox>
+#include <QSizePolicy>
 
 QString MainWindow::targetAddress = "";
 quint16 MainWindow::targetPort = 0;
@@ -34,6 +35,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->label->setScaledContents(false);
 
+    QSizePolicy sp_retain = ui->label->sizePolicy();
+    sp_retain.setRetainSizeWhenHidden(true);
+    ui->label->setSizePolicy(sp_retain);
+
     targetAddress = configManager->getTargetAddress();
     targetPort = configManager->getTargetPort();
 
@@ -49,11 +54,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::displayImage(const QImage &image) {
-    // QImage image;
-    // if (!image.loadFromData(imageData, "JPEG")) {
-    //     qDebug() << "Ошибка: не удалось загрузить изображение из данных.";
-    //     return;
-    // }
     if (!image.isNull()) {
         QSize labelSize = ui->label->size();
         QPixmap pixmap = QPixmap::fromImage(image).scaled(labelSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
@@ -77,7 +77,6 @@ void MainWindow::on_displayButton_clicked(bool checked)
         sendCommand("stopDisplay");
         ui->displayOFFButton->setChecked(true);
         ui->displayONButton->setChecked(false);
-        ui->label->hide();
         tempFrameNumber = 0;
     }
 

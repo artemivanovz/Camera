@@ -14,39 +14,112 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>531</width>
-      <height>361</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>390</y>
-      <width>767</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="displayButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="whatsThis">
-        <string>QPushButton {
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="2,1">
+      <item>
+       <layout class="QGridLayout" name="gridLayout" rowstretch="0,0" columnstretch="0,0">
+        <item row="0" column="0" rowspan="2">
+         <widget class="QLabel" name="label">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>16</horstretch>
+            <verstretch>9</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>160</width>
+            <height>90</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <layout class="QFormLayout" name="formLayout">
+          <property name="horizontalSpacing">
+           <number>50</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>50</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="cameraLabel">
+            <property name="text">
+             <string>КАМЕРА</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QRadioButton" name="cameraONButton">
+            <property name="text">
+             <string>ВКЛ</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QRadioButton" name="cameraOFFButton">
+            <property name="text">
+             <string>ВЫКЛ</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="1">
+         <layout class="QFormLayout" name="formLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="disaplayLabel">
+            <property name="text">
+             <string>ТРАНСЛЯЦИЯ</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QRadioButton" name="displayONButton">
+            <property name="text">
+             <string>ВКЛ</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QRadioButton" name="displayOFFButton">
+            <property name="text">
+             <string>ВЫКЛ</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="displayButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="whatsThis">
+           <string>QPushButton {
     background-color: beige;
     border-radius: 15px;
     font-family: 'Arial';
@@ -58,9 +131,9 @@
 QPushButton:hover {
     background-color: #f0e68c;
 }</string>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
     background-color: #D2B48C; /* Более коричневый оттенок бежевого */
     border: 2px solid #A0522D; /* Более контрастная окантовка */
     border-radius: 25px; /* Скругленные края */
@@ -78,22 +151,22 @@ QPushButton:hover {
 QPushButton:pressed {
     background-color: #8B4513; /* Цвет при нажатии */
 }</string>
-       </property>
-       <property name="text">
-        <string>ТРАНСЛЯЦИЯ ВКЛ</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cameraButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="whatsThis">
-        <string>QPushButton {
+          </property>
+          <property name="text">
+           <string>ТРАНСЛЯЦИЯ ВКЛ</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="cameraButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="whatsThis">
+           <string>QPushButton {
     background-color: beige;
     border-radius: 15px;
     font-family: 'Arial';
@@ -105,9 +178,9 @@ QPushButton:pressed {
 QPushButton:hover {
     background-color: #f0e68c;
 }</string>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
     background-color: #D2B48C; /* Более коричневый оттенок бежевого */
     border: 2px solid #A0522D; /* Более контрастная окантовка */
     border-radius: 25px; /* Скругленные края */
@@ -125,22 +198,22 @@ QPushButton:hover {
 QPushButton:pressed {
     background-color: #8B4513; /* Цвет при нажатии */
 }</string>
-       </property>
-       <property name="text">
-        <string>КАМЕРА ВКЛ</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_3">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
+          </property>
+          <property name="text">
+           <string>КАМЕРА ВКЛ</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
     background-color: #D2B48C; /* Более коричневый оттенок бежевого */
     border: 2px solid #A0522D; /* Более контрастная окантовка */
     border-radius: 25px; /* Скругленные края */
@@ -158,80 +231,17 @@ QPushButton:hover {
 QPushButton:pressed {
     background-color: #8B4513; /* Цвет при нажатии */
 }</string>
-       </property>
-       <property name="text">
-        <string>СПРАВКА О СОСТОЯНИИ</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>561</x>
-      <y>189</y>
-      <width>191</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <layout class="QFormLayout" name="formLayout_2">
-     <item row="0" column="0">
-      <widget class="QLabel" name="disaplayLabel">
-       <property name="text">
-        <string>ТРАНСЛЯЦИЯ</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QRadioButton" name="displayONButton">
-       <property name="text">
-        <string>ВКЛ</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QRadioButton" name="displayOFFButton">
-       <property name="text">
-        <string>ВЫКЛ</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>50</y>
-      <width>181</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="cameraLabel">
-       <property name="text">
-        <string>КАМЕРА</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QRadioButton" name="cameraONButton">
-       <property name="text">
-        <string>ВКЛ</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QRadioButton" name="cameraOFFButton">
-       <property name="text">
-        <string>ВЫКЛ</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
+          </property>
+          <property name="text">
+           <string>СПРАВКА О СОСТОЯНИИ</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
