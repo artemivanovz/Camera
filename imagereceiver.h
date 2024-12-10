@@ -18,11 +18,17 @@ public:
 
 signals:
     void imageReceived(const QImage &image);
+    void startCameraCommand();
+    void stopCameraCommand();
+    void startDisplayCommand();
+    void stopDisplayCommand();
+
 
 private slots:
     void onReadyRead();
 
 private:
+    void handleCommand(const QString &command);
     QUdpSocket *socket;
     QMap<int, QByteArray> imageFragments;
     int tempFrameNumber;

@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ImageReceiver_t {
-    QByteArrayData data[5];
-    char stringdata0[47];
+    QByteArrayData data[9];
+    char stringdata0[123];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,10 +36,16 @@ QT_MOC_LITERAL(0, 0, 13), // "ImageReceiver"
 QT_MOC_LITERAL(1, 14, 13), // "imageReceived"
 QT_MOC_LITERAL(2, 28, 0), // ""
 QT_MOC_LITERAL(3, 29, 5), // "image"
-QT_MOC_LITERAL(4, 35, 11) // "onReadyRead"
+QT_MOC_LITERAL(4, 35, 18), // "startCameraCommand"
+QT_MOC_LITERAL(5, 54, 17), // "stopCameraCommand"
+QT_MOC_LITERAL(6, 72, 19), // "startDisplayCommand"
+QT_MOC_LITERAL(7, 92, 18), // "stopDisplayCommand"
+QT_MOC_LITERAL(8, 111, 11) // "onReadyRead"
 
     },
     "ImageReceiver\0imageReceived\0\0image\0"
+    "startCameraCommand\0stopCameraCommand\0"
+    "startDisplayCommand\0stopDisplayCommand\0"
     "onReadyRead"
 };
 #undef QT_MOC_LITERAL
@@ -50,21 +56,29 @@ static const uint qt_meta_data_ImageReceiver[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       5,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   24,    2, 0x06 /* Public */,
+       1,    1,   44,    2, 0x06 /* Public */,
+       4,    0,   47,    2, 0x06 /* Public */,
+       5,    0,   48,    2, 0x06 /* Public */,
+       6,    0,   49,    2, 0x06 /* Public */,
+       7,    0,   50,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   27,    2, 0x08 /* Private */,
+       8,    0,   51,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QImage,    3,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
@@ -79,7 +93,11 @@ void ImageReceiver::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->imageReceived((*reinterpret_cast< const QImage(*)>(_a[1]))); break;
-        case 1: _t->onReadyRead(); break;
+        case 1: _t->startCameraCommand(); break;
+        case 2: _t->stopCameraCommand(); break;
+        case 3: _t->startDisplayCommand(); break;
+        case 4: _t->stopDisplayCommand(); break;
+        case 5: _t->onReadyRead(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -88,6 +106,34 @@ void ImageReceiver::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             using _t = void (ImageReceiver::*)(const QImage & );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ImageReceiver::imageReceived)) {
                 *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (ImageReceiver::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ImageReceiver::startCameraCommand)) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (ImageReceiver::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ImageReceiver::stopCameraCommand)) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (ImageReceiver::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ImageReceiver::startDisplayCommand)) {
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _t = void (ImageReceiver::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ImageReceiver::stopDisplayCommand)) {
+                *result = 4;
                 return;
             }
         }
@@ -123,13 +169,13 @@ int ImageReceiver::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 6;
     }
     return _id;
 }
@@ -139,6 +185,30 @@ void ImageReceiver::imageReceived(const QImage & _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void ImageReceiver::startCameraCommand()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
+}
+
+// SIGNAL 2
+void ImageReceiver::stopCameraCommand()
+{
+    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+}
+
+// SIGNAL 3
+void ImageReceiver::startDisplayCommand()
+{
+    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
+}
+
+// SIGNAL 4
+void ImageReceiver::stopDisplayCommand()
+{
+    QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

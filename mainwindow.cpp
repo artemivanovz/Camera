@@ -43,6 +43,10 @@ MainWindow::MainWindow(QWidget *parent)
     targetPort = configManager->getTargetPort();
 
     connect(imageReceiver, &ImageReceiver::imageReceived, this, &MainWindow::displayImage);
+    connect(imageReceiver, &ImageReceiver::startCameraCommand, this, &MainWindow::startCamera);
+    connect(imageReceiver, &ImageReceiver::stopCameraCommand, this, &MainWindow::stopCamera);
+    connect(imageReceiver, &ImageReceiver::startDisplayCommand, this, &MainWindow::startDisplay);
+    connect(imageReceiver, &ImageReceiver::stopDisplayCommand, this, &MainWindow::stopDisplay);
 
     imageReceiver->bindSocket(QHostAddress::LocalHost, 12346);
 }
@@ -62,6 +66,7 @@ void MainWindow::displayImage(const QImage &image) {
         qDebug() << "Ошибка при загрузке изображения";
     }
 }
+
 
 void MainWindow::on_displayButton_clicked(bool checked)
 {
@@ -115,4 +120,37 @@ void MainWindow::sendCommand(const QString &command){
     QUdpSocket *commandSocket = imageReceiver->getSocket();
     QByteArray data = command.toUtf8();
     commandSocket->writeDatagram(data,QHostAddress(targetAddress),targetPort);
+}
+
+void MainWindow::startCamera(){
+    ui->cameraButton->setChecked(true);
+    ui->cameraButton->setText("КАМЕРА ВЫКЛ");
+    ui->cameraOFFButton->setChecked(false);
+    ui->cameraONButton->setChecked(true);
+    ui->label->show();
+}
+
+void MainWindow::stopCamera(){
+    ui->cameraButton->setChecked(false);
+    ui->cameraButton->setText("КАМЕРА ВКЛ");
+    ui->cameraOFFButton->setChecked(true);
+    ui->cameraONButton->setChecked(false);
+    ui->label->hide();
+    tempFrameNumber = 0;
+}
+
+void MainWindow::startDisplay(){
+    ui->displayButton->setChecked(true);
+    ui->displayButton->setText("ТРАНСЛЯЦИЯ ВЫКЛ");
+    ui->displayOFFButton->setChecked(false);
+    ui->displayONButton->setChecked(true);
+    ui->label->show();
+}
+
+void MainWindow::stopDisplay(){
+    ui->displayButton->setChecked(false);
+    ui->displayButton->setText("ТРАНСЛЯЦИЯ ВКЛ");
+    ui->displayOFFButton->setChecked(true);
+    ui->displayONButton->setChecked(false);
+    tempFrameNumber = 0;
 }

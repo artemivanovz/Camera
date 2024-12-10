@@ -36,6 +36,18 @@ void ImageReceiver::onReadyRead() {
         }
 
         QDataStream stream(&buffer, QIODevice::ReadOnly);
+
+        QString packetType;
+        stream >> packetType;
+
+        if (packetType == "CMD") {
+            // Прием команды
+            QString command;
+            stream >> command;
+            handleCommand(command);
+
+        }
+        else if (packetType == "IMG"){
         quint16 frameNumber, totalRows, rowNumber, rowSize;
         quint8 bytesPerPixel, reserved;
         stream >> frameNumber >> totalRows >> rowNumber >> rowSize >> bytesPerPixel >> reserved;
@@ -75,5 +87,28 @@ void ImageReceiver::onReadyRead() {
 
             imageFragments.clear();
         }
+        }
+        else {
+            qDebug() << "Неизвестный тип пакета: " << packetType;
+        }
+    }
+}
+
+void ImageReceiver::handleCommand(const QString &command)
+{
+    if (command == "startCamera") {
+        qDebug() << "Запуск камеры.";
+        emit startCameraCommand();
+    } else if (command == "stopCamera") {
+        qDebug() << "Остановка камеры.";
+        emit stopCameraCommand();
+    } else if (command == "startDisplay") {
+        qDebug() << "Запуск отображения.";
+        emit startDisplayCommand();
+    } else if (command == "stopDisplay") {
+        qDebug() << "Остановка отображения.";
+        emit stopDisplayCommand();
+    } else {
+        qDebug() << "Неизвестная команда: " << command;
     }
 }

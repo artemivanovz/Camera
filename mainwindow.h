@@ -27,6 +27,10 @@ public:
     ~MainWindow();
 
 private slots:
+    void startCamera();
+    void stopCamera();
+    void startDisplay();
+    void stopDisplay();
 
     void on_displayButton_clicked(bool checked);
     void on_cameraButton_clicked(bool checked);
