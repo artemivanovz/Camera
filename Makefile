@@ -67,6 +67,7 @@ OBJECTS       = configmanager.o \
 		moc_mainwindow.o
 DIST          = build/Desktop_Qt_5_15_2_MSVC2015_64bit-Release/config.ini \
 		build/Desktop_Qt_5_15_2_MinGW_64_bit-Release/config.ini \
+		config.ini \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \

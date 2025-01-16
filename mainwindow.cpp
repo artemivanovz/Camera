@@ -48,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(imageReceiver, &ImageReceiver::startDisplayCommand, this, &MainWindow::startDisplay);
     connect(imageReceiver, &ImageReceiver::stopDisplayCommand, this, &MainWindow::stopDisplay);
 
-    imageReceiver->bindSocket(QHostAddress::LocalHost, 12346);
+    imageReceiver->bindSocket(QHostAddress::Any, 12346);
 }
 
 MainWindow::~MainWindow()
