@@ -9,6 +9,7 @@
 #include <QtGlobal>
 #include <QMessageBox>
 #include <QSizePolicy>
+#include <QTimer>
 
 QString MainWindow::targetAddress = "";
 quint16 MainWindow::targetPort = 0;
@@ -110,10 +111,31 @@ void MainWindow::on_cameraButton_clicked(bool checked)
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    QString message = QString("Статус камеры : %1.\nСтатус отображения : %2.\nВсего кадров передано : %3.").arg(ui->cameraButton->isChecked() ? "Вкл" : "Выкл")
-                          .arg(ui->displayButton->isChecked() ? "Вкл" : "Выкл")
-                          .arg(imageReceiver->getFrameNumber());
-    QMessageBox::information(this,"ИНФОРМАЦИЯ", message);
+    QMessageBox* msgBox = new QMessageBox(this);
+    msgBox->setWindowTitle("ИНФОРМАЦИЯ");
+    msgBox->setIcon(QMessageBox::Information);
+    msgBox->setStandardButtons(QMessageBox::Ok);
+
+    msgBox->show();
+
+    QTimer* timer = new QTimer(this);
+    timer->setInterval(500);
+
+    connect(timer, &QTimer::timeout, this, [=]() {
+        QString message = QString("Статус камеры : %1.\n" "Статус отображения : %2.\n" "Всего кадров передано : %3.")
+                              .arg(ui->cameraButton->isChecked() ? "Вкл" : "Выкл")
+                              .arg(ui->displayButton->isChecked() ? "Вкл" : "Выкл")
+                              .arg(imageReceiver->getFrameNumber());
+
+        msgBox->setText(message);
+
+        if (msgBox->isHidden()) {
+            timer->stop();
+            msgBox->deleteLater();
+        }
+    });
+
+    timer->start();
 }
 
 void MainWindow::sendCommand(const QString &command){

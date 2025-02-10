@@ -65,7 +65,8 @@ OBJECTS       = release/configmanager.o \
 		release/moc_mainwindow.o
 
 DIST          = build/Desktop_Qt_5_15_2_MSVC2015_64bit-Release/config.ini \
-		build/Desktop_Qt_5_15_2_MinGW_64_bit-Release/config.ini configmanager.h \
+		build/Desktop_Qt_5_15_2_MinGW_64_bit-Release/config.ini \
+		config.ini configmanager.h \
 		imagereceiver.h \
 		mainwindow.h configmanager.cpp \
 		imagereceiver.cpp \
@@ -984,7 +985,10 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../5.15.2/mingw81_64/include/QtWidgets/QMessageBox \
 		../../5.15.2/mingw81_64/include/QtWidgets/qmessagebox.h \
 		../../5.15.2/mingw81_64/include/QtWidgets/qdialog.h \
-		../../5.15.2/mingw81_64/include/QtWidgets/QSizePolicy
+		../../5.15.2/mingw81_64/include/QtWidgets/QSizePolicy \
+		../../5.15.2/mingw81_64/include/QtCore/QTimer \
+		../../5.15.2/mingw81_64/include/QtCore/qtimer.h \
+		../../5.15.2/mingw81_64/include/QtCore/qbasictimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o mainwindow.cpp
 
 release/moc_configmanager.o: release/moc_configmanager.cpp 
